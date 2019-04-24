@@ -31,7 +31,7 @@
         <spring-cloud.version>Finchley.SR2</spring-cloud.version>
         <spring-platform.version>Cairo-SR7</spring-platform.version>
 
-        <druid.version>1.0.31</druid.version>
+        <druid.version>1.1.10</druid.version>
         <mysql.version>5.1.45</mysql.version>
         <hutool.version>4.4.5</hutool.version>
         <mybatis-plus.version>3.1.0</mybatis-plus.version>
@@ -80,6 +80,7 @@
 
     <dependencyManagement>
         <dependencies>
+            <!--统一管理spring boot相关依赖版本-->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
@@ -87,6 +88,8 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
+            <!--统一管理spring cloud相关依赖版本-->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
@@ -94,6 +97,8 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
+            <!--spring版本管理工具，使用这一依赖可以实现spring相关第三方依赖自动适配版本号而不需要填写-->
             <dependency>
                 <groupId>io.spring.platform</groupId>
                 <artifactId>platform-bom</artifactId>
@@ -101,22 +106,11 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-            <!--<dependency>-->
-                <!--<groupId>org.springframework.cloud</groupId>-->
-                <!--<artifactId>spring-cloud-config-server</artifactId>-->
-                <!--<version>2.0.2.RELEASE</version>-->
-            <!--</dependency>-->
-            <!--<dependency>-->
-                <!--<groupId>com.springcloud</groupId>-->
-                <!--<artifactId>com.springcloud.Bom</artifactId>-->
-                <!--<version>1.0-SNAPSHOT</version>-->
-            <!--</dependency>-->
-
 
             <!--druid连接池-->
             <dependency>
                 <groupId>com.alibaba</groupId>
-                <artifactId>druid</artifactId>
+                <artifactId>druid-spring-boot-starter</artifactId>
                 <version>${druid.version}</version>
             </dependency>
             <!-- 数据库连接包 -->
@@ -176,6 +170,7 @@
         </plugins>
     </build>
 
+    <!--强制使用阿里云仓库-->
     <repositories>
         <repository>
             <id>aliyun</id>
