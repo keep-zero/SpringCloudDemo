@@ -39,7 +39,7 @@ public class Document implements Serializable {
     /**
      * 逻辑删除
      */
-    @TableLogic
+//    @TableLogic
     private Integer delFlag;
 
     /**
