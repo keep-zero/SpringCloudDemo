@@ -21,8 +21,9 @@
         <!--druid连接池-->
         <dependency>
             <groupId>com.alibaba</groupId>
-            <artifactId>druid</artifactId>
+            <artifactId>druid-spring-boot-starter</artifactId>
         </dependency>
+
 
         <!--mybatis plus-->
         <dependency>
