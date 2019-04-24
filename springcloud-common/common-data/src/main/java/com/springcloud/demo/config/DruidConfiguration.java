@@ -2,6 +2,8 @@ package com.springcloud.demo.config;
 
 import com.alibaba.druid.support.http.StatViewServlet;
 import com.alibaba.druid.support.http.WebStatFilter;
+import com.alibaba.druid.wall.WallConfig;
+import com.alibaba.druid.wall.WallFilter;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -34,6 +36,19 @@ public class DruidConfiguration {
         //initParameters.put("deny", "192.168.20.38");// IP黑名单 (存在共同时，deny优先于allow),如果满足deny的话提示:Sorry, you are not permitted to view this page.
         servletRegistrationBean.setInitParameters(initParameters);
         return servletRegistrationBean;
+    }
+
+    @Bean(name = "wallFilter")
+    public WallFilter wallFilter() {
+        WallConfig wallConfig = new WallConfig();
+        wallConfig.setDeleteWhereNoneCheck(true);
+
+        //允许sql批量操作
+        wallConfig.setMultiStatementAllow(true);
+        wallConfig.setNoneBaseStatementAllow(true);//允许非基本语句的其他语句
+        WallFilter wallfilter = new WallFilter();
+        wallfilter.setConfig(wallConfig);
+        return wallfilter;
     }
 
     /**

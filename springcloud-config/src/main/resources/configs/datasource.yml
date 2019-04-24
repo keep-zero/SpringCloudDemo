@@ -19,7 +19,7 @@ spring:
     testOnReturn: false
     poolPreparedStatements: true # 打开PSCache，并且指定每个连接上PSCache的大小
     maxPoolPreparedStatementPerConnectionSize: 20
-    filters: stat,wall # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙,性能消耗过大，切记正式环境去除，另，当使用的是druid而不是druid-springboot-starter依赖时，拦截器不生效
+    filters: stat,wallFiler # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙,性能消耗过大，切记正式环境去除，另，当使用的是druid而不是druid-springboot-starter依赖时，拦截器不生效
   # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
   # 合并多个DruidDataSource的监控数据

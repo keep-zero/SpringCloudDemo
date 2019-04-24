@@ -1,6 +1,7 @@
 package com.springcloud.demo.controller;
 
 import cn.hutool.json.JSONUtil;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.springcloud.demo.enity.Document;
 import com.springcloud.demo.service.DocumentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,6 +68,11 @@ public class DocumentController {
     @PutMapping("/update")
     public String update(String data){
         return JSONUtil.toJsonStr(Boolean.valueOf(this.documentService.updateById(JSONUtil.toBean(data, Document.class))));
+    }
+
+    @DeleteMapping("/deleteAll")
+    public String deleteAll(){
+        return JSONUtil.toJsonStr(Boolean.valueOf(this.documentService.remove(new QueryWrapper<>())));
     }
 
 }
