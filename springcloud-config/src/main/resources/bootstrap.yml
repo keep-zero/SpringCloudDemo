@@ -1,0 +1,23 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: springcloud-config-server
+  profiles:
+    active: native
+  #配置中心
+  cloud:
+    config:
+      server:
+       native:
+        search-locations: classpath:/configs/
+
+# 注册中心配置
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+

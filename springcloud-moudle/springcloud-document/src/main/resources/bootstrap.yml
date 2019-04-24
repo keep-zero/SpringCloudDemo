@@ -1,0 +1,24 @@
+server:
+  port: 7900
+spring:
+  application:
+    name: springcloud-document
+  # 配置中心
+  cloud:
+    config:
+      fail-fast: true
+      name: springcloud-document,datasource
+      profile: native
+      discovery:
+        enabled: true
+        service-id: springcloud-config-server
+      uri: http://localhost:8080
+  main:
+    allow-bean-definition-overriding: true
+# 注册中心配置
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka/

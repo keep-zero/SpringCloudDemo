@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>com.springcloud.demo</artifactId>
+        <groupId>com.springcloud</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>springcloud-moudle</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>springcloud-document</module>
+    </modules>
+
+    <dependencies>
+        <!--引入基本数据操作模块-->
+        <dependency>
+            <groupId>com.springcloud</groupId>
+            <artifactId>common-data</artifactId>
+        </dependency>
+
+        <!--系统内主要基础模块，如工具类等-->
+        <dependency>
+            <groupId>com.springcloud</groupId>
+            <artifactId>common-core</artifactId>
+        </dependency>
+
+        <!--配置客户端-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-config-client</artifactId>
+        </dependency>
+
+        <!--热部署-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+    </dependencies>
+</project>

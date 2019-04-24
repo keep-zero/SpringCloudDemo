@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.springcloud</groupId>
+    <artifactId>com.springcloud.demo</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>springcloud-common</module>
+        <module>springcloud-config</module>
+        <module>springcloud-eureka</module>
+
+    </modules>
+
+    <!-- 引入spring boot的依赖 -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.1.4.RELEASE</version>
+    </parent>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>1.8</java.version>
+        <project.version>1.0-SNAPSHOT</project.version>
+
+        <spring-boot.version>2.1.4.RELEASE</spring-boot.version>
+        <spring-cloud.version>Finchley.SR2</spring-cloud.version>
+        <spring-platform.version>Cairo-SR7</spring-platform.version>
+
+        <druid.version>1.0.31</druid.version>
+        <mysql.version>5.1.45</mysql.version>
+        <hutool.version>4.4.5</hutool.version>
+        <mybatis-plus.version>3.1.0</mybatis-plus.version>
+    </properties>
+
+    <dependencies>
+
+        <!--作为web项目存在-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!-- 引入Lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <!--eureka 客户端-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+
+        <!--断路器依赖-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>5.1.6.RELEASE</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.spring.platform</groupId>
+                <artifactId>platform-bom</artifactId>
+                <version>${spring-platform.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!--<dependency>-->
+                <!--<groupId>org.springframework.cloud</groupId>-->
+                <!--<artifactId>spring-cloud-config-server</artifactId>-->
+                <!--<version>2.0.2.RELEASE</version>-->
+            <!--</dependency>-->
+            <!--<dependency>-->
+                <!--<groupId>com.springcloud</groupId>-->
+                <!--<artifactId>com.springcloud.Bom</artifactId>-->
+                <!--<version>1.0-SNAPSHOT</version>-->
+            <!--</dependency>-->
+
+
+            <!--druid连接池-->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
+            <!-- 数据库连接包 -->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.version}</version>
+            </dependency>
+
+            <!--hutool,java工具包-->
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool.version}</version>
+            </dependency>
+
+            <!--mybatis plus-->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+
+            <!--mybatis plus extension,包含了mybatis plus core-->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-extension</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+
+
+            <!--基本数据操作模块-->
+            <dependency>
+                <groupId>com.springcloud</groupId>
+                <artifactId>common-data</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!--系统内主要基础模块，如工具类等-->
+            <dependency>
+                <groupId>com.springcloud</groupId>
+                <artifactId>common-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+
+            </dependencies>
+    </dependencyManagement>
+
+    <!-- 添加spring-boot的maven插件，不能少，打jar包时得用 -->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+    <repositories>
+        <repository>
+            <id>aliyun</id>
+            <name>aliyun</name>
+            <url>https://maven.aliyun.com/repository/public</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+</project>
