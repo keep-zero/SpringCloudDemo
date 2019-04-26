@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 
 /**
- * @description
+ * @description druid的监控配置，相当于做一个AOP
  * @auther: lai.guanfu
  * @date: 2019-04-24 16:29
  */
