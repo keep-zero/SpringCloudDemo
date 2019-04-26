@@ -1,0 +1,4 @@
+#开发环境配置
+logging:
+  level:
+    com.springcloud.demo: debug #限制com.springcloud.demo包下的日志级别

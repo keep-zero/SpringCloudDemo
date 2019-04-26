@@ -1,3 +1,5 @@
+#开发环境配置
+
 spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource    # 配置当前要使用的数据源的操作类型
