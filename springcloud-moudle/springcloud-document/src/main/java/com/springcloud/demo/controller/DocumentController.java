@@ -4,6 +4,7 @@ import cn.hutool.json.JSONUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.springcloud.demo.enity.Document;
 import com.springcloud.demo.service.DocumentService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
  * @auther: lai.guanfu
  * @date: 2019-04-07 17:10
  */
+@Slf4j
 @RestController
 @RequestMapping("/document")
 public class DocumentController {
@@ -28,6 +30,9 @@ public class DocumentController {
      */
     @GetMapping("/getOne/{id}")
     public String getOne(@PathVariable Integer id){
+        if(log.isDebugEnabled()){
+            log.debug("测试日志输出！！！");
+        }
         Document document = this.documentService.getById(id);
         return JSONUtil.toJsonStr(document);
     }
