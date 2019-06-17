@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>com.springcloud.demo</artifactId>
+        <groupId>com.springcloud</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>springcloud-system</artifactId>
+    <packaging>pom</packaging>
+
+    <description>系统公用非业务模块</description>
+    <modules>
+        <module>system-api</module>
+        <module>system-handle</module>
+        <module>system-admin-server</module>
+    </modules>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.springcloud</groupId>
+            <artifactId>common-core</artifactId>
+        </dependency>
+    </dependencies>
+</project>

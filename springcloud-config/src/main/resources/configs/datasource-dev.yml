@@ -1,38 +1,41 @@
-#开发环境配置
-
 spring:
+  # 配置数据库信息
   datasource:
-    type: com.alibaba.druid.pool.DruidDataSource    # 配置当前要使用的数据源的操作类型
-    driver-class-name: com.mysql.jdbc.Driver      # 配置MySQL的驱动程序类
-    url: jdbc:mysql://127.0.0.1:3306/spring         # 数据库连接地址
-    username: spring                                # 数据库用户名
-    password: spring                                # 数据库连接密码
-# 下面为连接池的补充设置，应用到上面所有数据源中
-# 初始化大小，最小，最大
-    initialSize: 5
-    minIdle: 5
-    maxActive: 20
-    maxWait: 60000  # 配置获取连接等待超时的时间
-    timeBetweenEvictionRunsMillis: 60000 # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
-    minEvictableIdleTimeMillis: 300000 # 配置一个连接在池中最小生存的时间，单位是毫秒
-    validationQuery: SELECT 1 FROM DUAL
-    testWhileIdle: true
-    testOnBorrow: false
-    testOnReturn: false
-    poolPreparedStatements: true # 打开PSCache，并且指定每个连接上PSCache的大小
-    maxPoolPreparedStatementPerConnectionSize: 20
-    filters: stat,wallFiler # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙,性能消耗过大，切记正式环境去除，另，当使用的是druid而不是druid-springboot-starter依赖时，拦截器不生效
-  # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
-    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
-  # 合并多个DruidDataSource的监控数据
-  #spring.datasource.useGlobalDataSourceStat=true
+    # 数据源配置
+    username: spring
+    password: spring
+    url: jdbc:mysql://127.0.0.1:3306/spring
+    driver-class-name: com.mysql.jdbc.Driver
+#    type: com.alibaba.druid.pool.DruidDataSource   # 指定数据源为druid
+    druid:
+
+      # 初始化 最小 最大
+      initial-size: 5
+      min-idle: 5
+      max-active: 20
+      # 配置获取连接等待超时的时间
+      max-wait: 60000
+      # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      time-between-eviction-runs-millis: 60000
+      # 配置一个连接在池中最小生存的时间，单位是毫秒
+      min-evictable-idle-time-millis: 300000
+      validation-query: SELECT 'x'
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      # 打开PSCache，并且指定每个连接上PSCache的大小
+      poolPreparedStatements: true
+      maxPoolPreparedStatementPerConnectionSize: 20
+#      aop-patterns: com.springcloud.controller.*
+      # 配置多个英文逗号分隔
+      filters: stat,wall
 
 # mybatis-plus 配置
 mybatis-plus:
   # 如果是放在src/main/java目录下 classpath:/com/yourpackage/*/mapper/*Mapper.xml
   # 如果是放在resource目录 classpath:/mapper/*Mapper.xml
-#  config-location: classpath:/mybatis/mybatis-config.xml
-  mapper-locations: classpath:/mapper/*Mapper.xml
+  #  config-location: classpath:/mybatis/mybatis-config.xml
+  mapper-locations: classpath:/mapper/*Mapper.xml #mybatis的mapper文件扫描路径
   #实体扫描，多个package用逗号或者分号分隔
   typeAliasesPackage: com.springcloud.demo.entity
   global-config:
@@ -40,7 +43,10 @@ mybatis-plus:
     id-type: 3
     # 热加载mapper文件
     refresh: true
+#    pagination-interceptor: com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor #分页插件
     db-config:
       db-type: mysql
+#      sql-injector: com.baomidou.mybatisplus.extension.injector.LogicSqlInjector #配置逻辑删除插件，mybatis plus 3.1.1后无需配置
       logic-delete-value: 1 #删除后的状态 默认值1
       logic-not-delete-value: 0 #逻辑前的值 默认值0
+

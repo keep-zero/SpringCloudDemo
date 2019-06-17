@@ -1,0 +1,38 @@
+server:
+  port: 5000 #服务端口
+spring:
+  profiles:
+    active: dev #当前生效环境
+  application:
+    name: springcloud-admin-server #指定应用的唯一标识/服务名
+
+# tag::configuration-eureka[]
+eureka:
+  client:
+    registryFetchIntervalSeconds: 5 #表示eureka client间隔多久去拉取服务注册信息，默认为30秒
+    service-url:
+      defaultZone: ${EUREKA_SERVICE_URL:http://localhost:8761}/eureka/ #服务注册中心地址
+  instance:
+    leaseRenewalIntervalInSeconds: 10 #表示eureka client发送心跳给server端的频率
+    health-check-url-path: /actuator/health #健康检查页面的URL，相对路径，默认使用 HTTP 访问，如果需要使用 HTTPS则需要使用绝对路径配置
+    metadata-map: #携带登录用户及密码
+      user.name: ${spring.security.user.name}
+      user.password: ${spring.security.user.password}
+
+#暴露所有监控端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS #总是展示详情信息
+# end::configuration-eureka[]
+---
+spring:
+  security:
+    user:
+      name: "admin"
+      password: "admin"
+

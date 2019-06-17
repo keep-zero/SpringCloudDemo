@@ -1,19 +1,21 @@
 package com.springcloud.demo.helper;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.stereotype.Component;
+import org.springframework.util.CollectionUtils;
+
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.stereotype.Component;
-import org.springframework.util.CollectionUtils;
 @Component
 public class RedisHelper {
 
     @Autowired
-    private RedisTemplate<String, Object> redisTemplate;
+    private StringRedisTemplate redisTemplate;
 
     //=============================common============================  
     /**
@@ -61,7 +63,6 @@ public class RedisHelper {
      * 删除缓存 
      * @param key 可以传一个值 或多个 
      */
-    @SuppressWarnings("unchecked")
     public void del(String ... key){
         if(key!=null&&key.length>0){
             if(key.length==1){
@@ -78,7 +79,7 @@ public class RedisHelper {
      * @param key 键 
      * @return 值
      */
-    public Object get(String key){
+    public String get(String key){
         return key==null?null:redisTemplate.opsForValue().get(key);
     }
 
@@ -88,7 +89,7 @@ public class RedisHelper {
      * @param value 值 
      * @return true成功 false失败 
      */
-    public boolean set(String key,Object value) {
+    public boolean set(String key,String value) {
         try {
             redisTemplate.opsForValue().set(key, value);
             return true;
@@ -106,7 +107,7 @@ public class RedisHelper {
      * @param time 时间(秒) time要大于0 如果time小于等于0 将设置无限期 
      * @return true成功 false 失败 
      */
-    public boolean set(String key,Object value,long time){
+    public boolean set(String key,String value,long time){
         try {
             if(time>0){
                 redisTemplate.opsForValue().set(key, value, time, TimeUnit.SECONDS);
@@ -209,7 +210,7 @@ public class RedisHelper {
      * @param value 值 
      * @return true 成功 false失败 
      */
-    public boolean hset(String key,String item,Object value) {
+    public boolean hset(String key,String item,String value) {
         try {
             redisTemplate.opsForHash().put(key, item, value);
             return true;
@@ -227,7 +228,7 @@ public class RedisHelper {
      * @param time 时间(秒)  注意:如果已存在的hash表有时间,这里将会替换原有的时间 
      * @return true 成功 false失败 
      */
-    public boolean hset(String key,String item,Object value,long time) {
+    public boolean hset(String key,String item,String value,long time) {
         try {
             redisTemplate.opsForHash().put(key, item, value);
             if(time>0){
@@ -287,7 +288,7 @@ public class RedisHelper {
      * @param key 键 
      * @return
      */
-    public Set<Object> sGet(String key){
+    public Set<String> sGet(String key){
         try {
             return redisTemplate.opsForSet().members(key);
         } catch (Exception e) {
@@ -302,7 +303,7 @@ public class RedisHelper {
      * @param value 值 
      * @return true 存在 false不存在 
      */
-    public boolean sHasKey(String key,Object value){
+    public boolean sHasKey(String key,String value){
         try {
             return redisTemplate.opsForSet().isMember(key, value);
         } catch (Exception e) {
@@ -317,7 +318,7 @@ public class RedisHelper {
      * @param values 值 可以是多个 
      * @return 成功个数
      */
-    public long sSet(String key, Object...values) {
+    public long sSet(String key, String...values) {
         try {
             return redisTemplate.opsForSet().add(key, values);
         } catch (Exception e) {
@@ -333,7 +334,7 @@ public class RedisHelper {
      * @param values 值 可以是多个 
      * @return 成功个数
      */
-    public long sSetAndTime(String key,long time,Object...values) {
+    public long sSetAndTime(String key,long time,String...values) {
         try {
             Long count = redisTemplate.opsForSet().add(key, values);
             if(time>0) expire(key, time);
@@ -382,7 +383,7 @@ public class RedisHelper {
      * @param end 结束  0 到 -1代表所有值 
      * @return
      */
-    public List<Object> lGet(String key,long start, long end){
+    public List<String> lGet(String key,long start, long end){
         try {
             return redisTemplate.opsForList().range(key, start, end);
         } catch (Exception e) {
@@ -426,7 +427,7 @@ public class RedisHelper {
      * @param value 值 
      * @return
      */
-    public boolean lSet(String key, Object value) {
+    public boolean lSet(String key, String value) {
         try {
             redisTemplate.opsForList().rightPush(key, value);
             return true;
@@ -443,7 +444,7 @@ public class RedisHelper {
      * @param time 时间(秒) 
      * @return
      */
-    public boolean lSet(String key, Object value, long time) {
+    public boolean lSet(String key, String value, long time) {
         try {
             redisTemplate.opsForList().rightPush(key, value);
             if (time > 0) expire(key, time);
@@ -460,7 +461,7 @@ public class RedisHelper {
      * @param value 值 
      * @return
      */
-    public boolean lSet(String key, List<Object> value) {
+    public boolean lSet(String key, List<String> value) {
         try {
             redisTemplate.opsForList().rightPushAll(key, value);
             return true;
@@ -477,7 +478,7 @@ public class RedisHelper {
      * @param time 时间(秒) 
      * @return
      */
-    public boolean lSet(String key, List<Object> value, long time) {
+    public boolean lSet(String key, List<String> value, long time) {
         try {
             redisTemplate.opsForList().rightPushAll(key, value);
             if (time > 0) expire(key, time);
@@ -495,7 +496,7 @@ public class RedisHelper {
      * @param value 值 
      * @return
      */
-    public boolean lUpdateIndex(String key, long index,Object value) {
+    public boolean lUpdateIndex(String key, long index,String value) {
         try {
             redisTemplate.opsForList().set(key, index, value);
             return true;
@@ -512,7 +513,7 @@ public class RedisHelper {
      * @param value 值 
      * @return 移除的个数
      */
-    public long lRemove(String key,long count,Object value) {
+    public long lRemove(String key,long count,String value) {
         try {
             Long remove = redisTemplate.opsForList().remove(key, count, value);
             return remove;

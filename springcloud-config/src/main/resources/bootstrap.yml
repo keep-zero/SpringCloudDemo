@@ -1,23 +1,34 @@
 server:
-  port: 8080
+  port: 8080 #端口
 
 spring:
   application:
-    name: springcloud-config-server
+    name: springcloud-config-server #应用名
   profiles:
-    active: native
+    active: native #环境
   #配置中心
   cloud:
     config:
       server:
        native:
-        search-locations: classpath:/configs/
+        search-locations: classpath:/configs/  #此处表明使用本地目录/configs下的配置文件作为配置仓库
+
+#监控端点暴露
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*' #暴露所有端点
+  endpoint:
+    health:
+      show-details: ALWAYS
 
 # 注册中心配置
 eureka:
   instance:
-    prefer-ip-address: true
+    leaseRenewalIntervalInSeconds: 10
+    health-check-url-path: /actuator/health
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://127.0.0.1:8761/eureka/ #eureka的注册地址
 

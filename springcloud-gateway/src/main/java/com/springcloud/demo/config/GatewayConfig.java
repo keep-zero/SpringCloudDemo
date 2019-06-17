@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
  * @auther: lai.guanfu
  * @date: 2019-04-25 17:58
  */
-@Configuration
+//@Configuration
 public class GatewayConfig {
 
     /**
@@ -20,25 +20,43 @@ public class GatewayConfig {
      * @param
      * @return
      */
-    @Bean
-    public RouteLocator customerRouteLocator(RouteLocatorBuilder builder) {
-        return builder.routes()
-            .route(r -> r.path("/document/**")
-                    .filters(f -> f.filter(new RequestTimeFilter())
-                            .addResponseHeader("X-Response-Default-Foo", "Default-Bar"))
-                    .uri("lb://springcloud-document")
-                    .order(0)
-                    .id("springcloud-document")
-            )
-            .build();
-    }
+//    @Bean
+//    public RouteLocator customerRouteLocator(RouteLocatorBuilder builder) {
+//        return builder.routes()
+//            .route(r -> r.path("/document/**")
+//                    .filters(f -> f.filter(new RequestTimeFilter()).stripPrefix(1)
+//                            .addResponseHeader("X-Response-Default-Foo", "Default-Bar"))
+//                    .uri("lb://springcloud-document")
+//                    .order(0)
+//                    .id("springcloud-document")
+//            )
+//            .build();
+//    }
+
+    /**
+     * 添加路由并给路由添加过滤器
+     * @param
+     * @return
+     */
+//    @Bean
+//    public RouteLocator customerRouteLocator(RouteLocatorBuilder builder) {
+//        return builder.routes()
+//                .route(r -> r.path("/client/**")
+//                        .filters(f -> f.filter(new RequestTimeFilter())
+//                                .addResponseHeader("X-Response-Default-Foo", "Default-Bar"))
+//                        .uri("lb://springcloud-client")
+//                        .order(0)
+//                        .id("springcloud-client")
+//                )
+//                .build();
+//    }
 
     /**
      * 添加全局过滤器
      * @return
      */
-    @Bean
-    public GlobalTokenFilter globalTokenFilter(){
-        return new GlobalTokenFilter();
-    }
+//    @Bean
+//    public GlobalTokenFilter globalTokenFilter(){
+//        return new GlobalTokenFilter();
+//    }
 }
