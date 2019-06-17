@@ -1,0 +1,40 @@
+#环境配置，所有dev环境的服务共享当前配置
+
+#熔断配置
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          strategy: SEMAPHORE
+          thread:
+            timeoutInMilliseconds: 60000
+  shareSecurityContext: true
+0.
+
+#监控端点暴露
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*' #暴露所有端点
+    health:
+      sensitive: false #关闭过滤敏感信息
+  endpoint:
+    health:
+      show-details: ALWAYS
+
+# 注册中心配置
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 10
+    health-check-url-path: /actuator/health
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka/ #eureka的注册地址
+
+#spring:
+#  boot:
+#    admin:
+#      client:
+#        url: http://localhost:5000

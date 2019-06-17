@@ -1,0 +1,5 @@
+# Logger Config
+logging:
+  level:
+    com.springcloud.demo: debug #限制com.springcloud.demo包下的日志级别
+#  file: logs/${spring.application.name}/${logging.level.com.springcloud.demo}.log

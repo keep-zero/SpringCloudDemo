@@ -13,7 +13,9 @@
         <module>springcloud-config</module>
         <module>springcloud-eureka</module>
         <module>springcloud-gateway</module>
-
+        <module>springcloud-system</module>
+        <module>springcloud-moudle</module>
+        <module>springcloud-oauth</module>
     </modules>
 
     <!-- 引入spring boot的依赖 -->
@@ -34,8 +36,11 @@
 
         <druid.version>1.1.10</druid.version>
         <mysql.version>5.1.45</mysql.version>
-        <hutool.version>4.4.5</hutool.version>
+        <hutool.version>4.5.10</hutool.version>
         <mybatis-plus.version>3.1.0</mybatis-plus.version>
+        <security.oauth.version>2.3.4.RELEASE</security.oauth.version>
+        <security.oauth.auto.version>2.1.2.RELEASE</security.oauth.auto.version>
+        <spring-boot-admin.version>2.1.4</spring-boot-admin.version>
     </properties>
 
     <dependencies>
@@ -46,30 +51,17 @@
             <optional>true</optional>
         </dependency>
 
-        <!--eureka 客户端-->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.springframework.boot</groupId>-->
+            <!--<artifactId>spring-boot-test</artifactId>-->
+            <!--<scope>test</scope>-->
+        <!--</dependency>-->
 
-        <!--断路器依赖-->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-test</artifactId>
-            <version>5.1.6.RELEASE</version>
-            <scope>test</scope>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.springframework</groupId>-->
+            <!--<artifactId>spring-test</artifactId>-->
+            <!--<scope>test</scope>-->
+        <!--</dependency>-->
     </dependencies>
 
     <dependencyManagement>
@@ -135,6 +127,23 @@
                 <version>${mybatis-plus.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-generator</artifactId>
+                <version>${mybatis-plus.version}</version>
+            </dependency>
+
+            <!--稳定版本，替代spring security bom内置-->
+            <dependency>
+                <groupId>org.springframework.security.oauth</groupId>
+                <artifactId>spring-security-oauth2</artifactId>
+                <version>${security.oauth.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.security.oauth.boot</groupId>
+                <artifactId>spring-security-oauth2-autoconfigure</artifactId>
+                <version>${security.oauth.auto.version}</version>
+            </dependency>
 
             <!--基本数据操作模块-->
             <dependency>
@@ -150,8 +159,53 @@
                 <version>${project.version}</version>
             </dependency>
 
+            <!--系统内主要基础模块，如工具类等-->
+            <dependency>
+                <groupId>com.springcloud</groupId>
+                <artifactId>common-swagger</artifactId>
+                <version>${project.version}</version>
+            </dependency>
 
-            </dependencies>
+            <!--系统安全基础模块-->
+            <dependency>
+                <groupId>com.springcloud</groupId>
+                <artifactId>common-security</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!--swagger接口文档基础模块-->
+            <dependency>
+                <groupId>com.springcloud</groupId>
+                <artifactId>common-swagger</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!--用户信息基础模块-->
+            <dependency>
+                <groupId>com.springcloud</groupId>
+                <artifactId>system-api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!--admin监控服务-->
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-starter-server</artifactId>
+                <version>${spring-boot-admin.version}</version>
+            </dependency>
+            <!--admin监控服务可视化界面-->
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-server-ui</artifactId>
+                <version>${spring-boot-admin.version}</version>
+            </dependency>
+            <!--admin监控服务客户端-->
+            <dependency>
+                <groupId>de.codecentric</groupId>
+                <artifactId>spring-boot-admin-starter-client</artifactId>
+                <version>${spring-boot-admin.version}</version>
+            </dependency>
+        </dependencies>
     </dependencyManagement>
 
     <!-- 添加spring-boot的maven插件，不能少，打jar包时得用 -->

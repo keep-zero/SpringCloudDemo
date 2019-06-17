@@ -1,0 +1,23 @@
+server:
+  port: 8000 #服务端口
+spring:
+  profiles:
+    active: dev #当前生效环境
+  application:
+    name: springcloud-admin #指定应用的唯一标识/服务名
+  # 配置中心
+  cloud:
+    config:
+      fail-fast: true
+      name: ${spring.application.name},datasource,redis #指定工程于config server中的应用名
+      profile: ${spring.profiles.active} #指定工程于config server中的生效环境
+      uri: http://localhost:8080 #指定配置中心的注册路径
+
+
+# 注册中心配置
+#eureka:
+#  instance:
+#    prefer-ip-address: true #优先使用IP地址注册
+#  client:
+#    service-url:
+#      defaultZone: http://127.0.0.1:8761/eureka/ #eureka的注册地址

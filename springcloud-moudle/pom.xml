@@ -10,23 +10,31 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>springcloud-moudle</artifactId>
+    <description>业务模块</description>
     <packaging>pom</packaging>
+
     <modules>
-        <module>springcloud-document</module>
+        <module>springcloud-client</module>
+        <module>springcloud-client2</module>
     </modules>
 
     <dependencies>
-
-        <!--作为web项目存在-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
         <!--引入基本数据操作模块-->
         <dependency>
             <groupId>com.springcloud</groupId>
             <artifactId>common-data</artifactId>
+        </dependency>
+
+        <!--eureka 客户端-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+
+        <!--实时健康监控-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
 
         <!--系统内主要基础模块，如工具类等-->
@@ -35,18 +43,46 @@
             <artifactId>common-core</artifactId>
         </dependency>
 
+        <!--Api接口文档在线生成工具-->
+        <dependency>
+            <groupId>com.springcloud</groupId>
+            <artifactId>common-swagger</artifactId>
+        </dependency>
+
         <!--配置客户端-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-config-client</artifactId>
         </dependency>
 
-        <!--热部署-->
+        <!--作为web项目存在-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <optional>true</optional>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
+        <!--oauth2模块-->
+        <dependency>
+            <groupId>com.springcloud</groupId>
+            <artifactId>common-security</artifactId>
+        </dependency>
+
+        <!--热部署-->
+        <!--<dependency>-->
+            <!--<groupId>org.springframework.boot</groupId>-->
+            <!--<artifactId>spring-boot-devtools</artifactId>-->
+            <!--<optional>true</optional>-->
+        <!--</dependency>-->
+
     </dependencies>
+
+    <!-- 添加spring-boot的maven插件，不能少，打jar包时得用 -->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 </project>
