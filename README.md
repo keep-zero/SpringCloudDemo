@@ -12,6 +12,7 @@ SpringCloud 框架学习Demo
     Spring Cloud Config 配置中心
     Spring Cloud Gateway 网关中心
     Spring Security OAuth2.0 系统授权
+    Spring Boot Admin 系统监控
     
     Mybatis Plus+Druid 数据库操作
     spring-data-redis 系统缓存
@@ -19,6 +20,7 @@ SpringCloud 框架学习Demo
 #### 辅助工具
     lombok:1.18.6 快速开发
     hutool-all:4.5.10 java工具类库
+    Swagger2 Api文档集成
     
 ## 项目环境
 MySQL5.5及以上  
