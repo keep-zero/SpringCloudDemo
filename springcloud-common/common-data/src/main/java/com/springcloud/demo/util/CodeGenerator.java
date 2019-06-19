@@ -50,8 +50,10 @@ public class CodeGenerator {
 
 //            String moudleName = scanner("模块名");
 //            String tableName = scanner("表名，多个英文逗号分割");
-            String moudleName = "springcloud-client";
-            String tableName = "client";
+//            String parentModleName = scanner("父模块名");
+            String isExtends = scanner("是否继承BaseEntity(Y/N)");
+            String moudleName = "springcloud-client2";
+            String tableName = "client_total";
 
             //整体路径，默认所有自动生成代码归属于业务模块moudle总目录下的目标模块
             String projectPath = System.getProperty("user.dir")+StringPool.SLASH+"springcloud-moudle"+StringPool.SLASH+moudleName;
@@ -103,8 +105,11 @@ public class CodeGenerator {
             strategy.setNaming(NamingStrategy.underline_to_camel);
             //数据库表字段映射到实体的命名策略,此处指定下划线转小驼峰
             strategy.setColumnNaming(NamingStrategy.underline_to_camel);
-            //自定义继承的Entity类全称，带包名
-//            strategy.setSuperEntityClass("com.springcloud.entity.BaseEntity");
+            if("Y".equals(isExtends)){
+                //自定义继承的Entity类全称，带包名
+                strategy.setSuperEntityClass("com.springcloud.demo.entity.BaseEntity");
+                strategy.setSuperEntityColumns("create_by","create_time","update_by","update_time");
+            }
             //是否为lombok模型
             strategy.setEntityLombokModel(true);
             //生成 @RestController 控制器
