@@ -16,6 +16,7 @@ SpringCloud 框架学习Demo
     
     Mybatis Plus+Druid 数据库操作
     spring-data-redis 系统缓存
+    TX-LCN 分布式事务
     
 #### 辅助工具
     lombok:1.18.6 快速开发
@@ -47,6 +48,8 @@ windows/linux
 |-         |---system-handle 系统相关的API接口
 |
 |-         |---system-admin-server Spring Boot Admin服务监控服务端模块
+|
+|-         |---system-tx-manager TX-LCN事务协调器模块
 |
 |------springcloud-moudle 业务功能模块
 |
