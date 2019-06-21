@@ -12,3 +12,11 @@ spring:
       name: ${spring.application.name},datasource,redis #指定工程于config server中的应用名
       profile: ${spring.profiles.active} #指定工程于config server中的生效环境
       uri: http://localhost:8080 #指定配置中心的注册路径
+
+#eureka:
+#  instance:
+#    leaseRenewalIntervalInSeconds: 10
+#    health-check-url-path: /actuator/health
+#  client:
+#    service-url:
+#      defaultZone: http://127.0.0.1:8761/eureka/ #eureka的注册地址

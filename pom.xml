@@ -41,6 +41,7 @@
         <security.oauth.version>2.3.4.RELEASE</security.oauth.version>
         <security.oauth.auto.version>2.1.2.RELEASE</security.oauth.auto.version>
         <spring-boot-admin.version>2.1.4</spring-boot-admin.version>
+        <txlcn.version>5.0.2.RELEASE</txlcn.version>
     </properties>
 
     <dependencies>
@@ -199,11 +200,22 @@
                 <artifactId>spring-boot-admin-server-ui</artifactId>
                 <version>${spring-boot-admin.version}</version>
             </dependency>
-            <!--admin监控服务客户端-->
+
+            <!--分布式事务-->
             <dependency>
-                <groupId>de.codecentric</groupId>
-                <artifactId>spring-boot-admin-starter-client</artifactId>
-                <version>${spring-boot-admin.version}</version>
+                <groupId>com.codingapi.txlcn</groupId>
+                <artifactId>txlcn-tm</artifactId>
+                <version>${txlcn.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.codingapi.txlcn</groupId>
+                <artifactId>txlcn-tc</artifactId>
+                <version>${txlcn.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.codingapi.txlcn</groupId>
+                <artifactId>txlcn-txmsg-netty</artifactId>
+                <version>${txlcn.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

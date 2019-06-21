@@ -24,7 +24,7 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 @TableName("client")
 @ApiModel(value = "Client",description = "客户端实体")
-public class Client implements Serializable {
+public class Client extends BaseEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -48,34 +48,6 @@ public class Client implements Serializable {
     @ApiModelProperty(value = "客户端路径",dataType = "String ",name = "clientPath",required = true)
     @TableField("client_path")
     private String clientPath;
-
-    /**
-     *  创建人
-     */
-    @ApiModelProperty(value = "创建人",dataType = "String ",name = "createBy",required = true)
-    @TableField(value = "create_by",fill = FieldFill.INSERT)
-    private String createBy;
-
-    /**
-     * 创建时间
-     */
-    @ApiModelProperty(value = "创建时间",dataType = "LocalDateTime ",name = "createTime",required = true)
-    @TableField(value = "create_time",fill = FieldFill.INSERT)
-    private LocalDateTime createTime;
-
-    /**
-     *  最后更新人
-     */
-    @ApiModelProperty(value = "最后更新人",dataType = "String ",name = "updateBy",required = true)
-    @TableField(value = "update_by",fill = FieldFill.INSERT_UPDATE)
-    private String updateBy;
-
-    /**
-     * 最后更新时间
-     */
-    @ApiModelProperty(value = "最后更新时间",dataType = "LocalDateTime ",name = "updateTime",required = true)
-    @TableField(value = "update_time",fill = FieldFill.INSERT_UPDATE)
-    private LocalDateTime updateTime;
 
     /**
      * 逻辑删除标志

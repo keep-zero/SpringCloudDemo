@@ -74,6 +74,16 @@
             <!--<optional>true</optional>-->
         <!--</dependency>-->
 
+        <!--分布式事务客户端-->
+        <dependency>
+            <groupId>com.codingapi.txlcn</groupId>
+            <artifactId>txlcn-tc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.codingapi.txlcn</groupId>
+            <artifactId>txlcn-txmsg-netty</artifactId>
+        </dependency>
+
     </dependencies>
 
     <!-- 添加spring-boot的maven插件，不能少，打jar包时得用 -->

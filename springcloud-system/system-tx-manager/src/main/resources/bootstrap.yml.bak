@@ -1,0 +1,87 @@
+server:
+  port: 7970 #端口号
+
+spring:
+  profiles:
+    active: dev #当前生效环境
+    application:
+      name: tx-manager #指定应用的唯一标识/服务名
+    # 配置中心
+#    cloud:
+#      config:
+#        fail-fast: true
+#        name: ${spring.application.name},datasource,redis #指定工程于config server中的应用名
+#        profile: ${spring.profiles.active} #指定工程于config server中的生效环境
+#        uri: http://localhost:8080 #指定配置中心的注册路径
+
+---
+spring:
+  # 配置数据库信息
+  datasource:
+    # 数据源配置
+    username: spring
+    password: spring
+    url: jdbc:mysql://127.0.0.1:3306/spring
+    driver-class-name: com.mysql.jdbc.Driver
+    #    type: com.alibaba.druid.pool.DruidDataSource   # 指定数据源为druid
+    druid:
+      # 初始化 最小 最大
+      initial-size: 5
+      min-idle: 5
+      max-active: 20
+      # 配置获取连接等待超时的时间
+      max-wait: 60000
+      # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      time-between-eviction-runs-millis: 60000
+      # 配置一个连接在池中最小生存的时间，单位是毫秒
+      min-evictable-idle-time-millis: 300000
+      validation-query: SELECT 'x'
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      # 打开PSCache，并且指定每个连接上PSCache的大小
+      poolPreparedStatements: true
+      maxPoolPreparedStatementPerConnectionSize: 20
+      #      aop-patterns: com.springcloud.controller.*
+      # 配置多个英文逗号分隔
+      filters: stat,wall
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+    use-generated-keys: true
+
+# mybatis-plus 配置
+mybatis-plus:
+  # 如果是放在src/main/java目录下 classpath:/com/yourpackage/*/mapper/*Mapper.xml
+  # 如果是放在resource目录 classpath:/mapper/*Mapper.xml
+  #  config-location: classpath:/mybatis/mybatis-config.xml
+  mapper-locations: classpath:/mapper/*Mapper.xml #mybatis的mapper文件扫描路径
+  #实体扫描，多个package用逗号或者分号分隔
+  typeAliasesPackage: com.springcloud.demo.entity
+  global-config:
+    #主键类型  0:"数据库ID自增", 1:"用户输入ID",2:"全局唯一ID (数字类型唯一ID)", 3:"全局唯一ID UUID";
+    id-type: 3
+    # 热加载mapper文件
+    refresh: true
+    #    pagination-interceptor: com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor #分页插件
+    db-config:
+      db-type: mysql
+      #      sql-injector: com.baomidou.mybatisplus.extension.injector.LogicSqlInjector #配置逻辑删除插件，mybatis plus 3.1.1后无需配置
+      logic-delete-value: 1 #删除后的状态 默认值1
+      logic-not-delete-value: 0 #逻辑前的值 默认值0
+
+
+#事务配置
+#tx-lcn:
+#  manager:
+#    heart-time: 15000 # 心跳检测时间(ms). 默认为 300000
+#    port: 8070  # TM监听Socket端口. 默认为 ${server.port} - 100
+#    host: 127.0.0.1 # TM监听IP. 默认为 127.0.0.1
+#    dtx-time: 30000 #分布式事务执行总时间(ms). 默认为36000
+#    concurrent-level: 128 #事务处理并发等级. 默认为机器逻辑核心数5倍
+#  logger:
+#    enabled: true # 开启日志
+#  message:
+#    netty:
+#      attr-delay-time: 10000 #参数延迟删除时间单位ms  默认为dtx-time值

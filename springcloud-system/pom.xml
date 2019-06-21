@@ -17,6 +17,7 @@
         <module>system-api</module>
         <module>system-handle</module>
         <module>system-admin-server</module>
+        <module>system-tx-manager</module>
     </modules>
 
     <dependencies>
