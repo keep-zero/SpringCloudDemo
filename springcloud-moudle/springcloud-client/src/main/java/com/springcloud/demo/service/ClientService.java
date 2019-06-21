@@ -23,4 +23,10 @@ public interface ClientService extends IService<Client> {
      */
     IPage<Client> getClientPage(Page page, Client client);
 
+    /**
+     * 新增client,用于测试分布式事务
+     * @param client client对象
+     * @return
+     */
+    void addClient(Client client);
 }

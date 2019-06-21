@@ -10,7 +10,6 @@ hystrix:
           thread:
             timeoutInMilliseconds: 60000
   shareSecurityContext: true
-0.
 
 #监控端点暴露
 management:
