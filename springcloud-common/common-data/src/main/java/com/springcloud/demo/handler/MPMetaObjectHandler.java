@@ -45,7 +45,7 @@ public class MPMetaObjectHandler implements MetaObjectHandler {
 //        }
 
         if (metaObject.hasGetter("delFlag")) {
-            this.setFieldValByName("createTime", delFlagDefaultValue,metaObject);
+            this.setFieldValByName("delFlag", delFlagDefaultValue,metaObject);
         }
 
 //        if(null != delFlag){
@@ -72,7 +72,7 @@ public class MPMetaObjectHandler implements MetaObjectHandler {
             this.setFieldValByName("updateBy", "admin",metaObject);
         }
 
-        if (metaObject.hasGetter("v")) {
+        if (metaObject.hasGetter("updateTime")) {
             this.setFieldValByName("updateTime", LocalDateTime.now(),metaObject);
         }
 
