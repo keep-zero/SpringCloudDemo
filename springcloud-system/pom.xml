@@ -18,6 +18,7 @@
         <module>system-handle</module>
         <module>system-admin-server</module>
         <module>system-tx-manager</module>
+        <module>system-job</module>
     </modules>
 
     <dependencies>
