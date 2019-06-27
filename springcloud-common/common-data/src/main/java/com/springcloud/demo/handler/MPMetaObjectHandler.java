@@ -18,8 +18,8 @@ public class MPMetaObjectHandler implements MetaObjectHandler {
     /**
      * 获取逻辑删除的未删除值作为默认初始值
      */
-    @Value("${mybatis-plus.global-config.db-config.logic-not-delete-value}")
-    private Integer delFlagDefaultValue;
+    @Value(value = "${mybatis-plus.global-config.db-config.logic-not-delete-value}")
+    private Integer delFlagDefaultValue=0;
 
     /**
      * 插入填充
@@ -28,9 +28,6 @@ public class MPMetaObjectHandler implements MetaObjectHandler {
     @Override
     public void insertFill(MetaObject metaObject) {
 
-//        Object createBy = metaObject.getValue("createBy");
-//        Object createTime = metaObject.getValue("createTime");
-//        Object delFlag = metaObject.getValue("delFlag");
         //判断是否存在该字段
         if ( metaObject.hasGetter("createBy")) {
             this.setFieldValByName("createBy", "admin",metaObject);
@@ -40,17 +37,9 @@ public class MPMetaObjectHandler implements MetaObjectHandler {
             this.setFieldValByName("createTime", LocalDateTime.now(),metaObject);
         }
 
-//        if (null != createTime) {
-//            this.setFieldValByName("createTime", LocalDateTime.now(),metaObject);
-//        }
-
         if (metaObject.hasGetter("delFlag")) {
             this.setFieldValByName("delFlag", delFlagDefaultValue,metaObject);
         }
-
-//        if(null != delFlag){
-//            this.setFieldValByName("delFlag", delFlagDefaultValue, metaObject);
-//        }
 
         this.updateFill(metaObject);
     }
@@ -61,12 +50,6 @@ public class MPMetaObjectHandler implements MetaObjectHandler {
      */
     @Override
     public void updateFill(MetaObject metaObject) {
-//        Object updateBy = metaObject.getValue("updateBy");
-//        Object updateTime = metaObject.getValue("updateTime");
-//        //设置当前登录用户
-//        if (null != updateBy) {
-//            this.setFieldValByName("updateBy", "admin",metaObject);
-//        }
         //判断是否存在该字段
         if ( metaObject.hasGetter("updateBy")) {
             this.setFieldValByName("updateBy", "admin",metaObject);
@@ -75,10 +58,5 @@ public class MPMetaObjectHandler implements MetaObjectHandler {
         if (metaObject.hasGetter("updateTime")) {
             this.setFieldValByName("updateTime", LocalDateTime.now(),metaObject);
         }
-
-
-//        if (null != updateTime) {
-//            this.setFieldValByName("updateTime", LocalDateTime.now(),metaObject);
-//        }
     }
 }
