@@ -51,6 +51,8 @@ windows/linux
 |
 |-         |---system-tx-manager TX-LCN事务协调器模块
 |
+|-         |---system-job 定时任务处理模块
+|
 |------springcloud-moudle 业务功能模块
 |
 |-         |---springcloud-client 测试客户端
