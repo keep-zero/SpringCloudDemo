@@ -36,6 +36,7 @@
 
         <druid.version>1.1.10</druid.version>
         <mysql.version>5.1.45</mysql.version>
+        <oracle.version>11.2.0.4</oracle.version>
         <hutool.version>4.5.10</hutool.version>
         <mybatis-plus.version>3.1.0</mybatis-plus.version>
         <security.oauth.version>2.3.4.RELEASE</security.oauth.version>
@@ -100,11 +101,18 @@
                 <artifactId>druid-spring-boot-starter</artifactId>
                 <version>${druid.version}</version>
             </dependency>
-            <!-- 数据库连接包 -->
+            <!-- 数据库连接包：mysql -->
             <dependency>
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
                 <version>${mysql.version}</version>
+            </dependency>
+
+            <!-- 数据库连接包：oracle -->
+            <dependency>
+                <groupId>com.oracle</groupId>
+                <artifactId>ojdbc6</artifactId>
+                <version>${oracle.version}</version>
             </dependency>
 
             <!--hutool,java工具包-->

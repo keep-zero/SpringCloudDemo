@@ -2,8 +2,8 @@
 spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource    # 配置当前要使用的数据源的操作类型
-    driver-class-name: com.mysql.jdbc.Driver      # 配置MySQL的驱动程序类
-    url: jdbc:mysql://xxxxxx:3306/spring         # 数据库连接地址
+    driver-class-name: oracle.jdbc.driver.OracleDriver      # 配置MySQL的驱动程序类
+    url: jdbc:oracle:thin:@192.168.29.130:1521:orcl        # 数据库连接地址
     username: spring                                # 数据库用户名
     password: spring                                # 数据库连接密码
 # 下面为连接池的补充设置，应用到上面所有数据源中
@@ -40,6 +40,6 @@ mybatis-plus:
     # 热加载mapper文件
     refresh: true
     db-config:
-      db-type: mysql
+      db-type: oracle
       logic-delete-value: 1 #删除后的状态 默认值1
       logic-not-delete-value: 0 #逻辑前的值 默认值0
