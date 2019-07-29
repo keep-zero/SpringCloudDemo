@@ -32,7 +32,7 @@ import java.lang.reflect.Method;
  */
 @RestController
 @AllArgsConstructor
-@RequestMapping("/sys-schedule")
+@RequestMapping("/schedule")
 public class SysScheduleController {
 
     /**

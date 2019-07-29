@@ -49,6 +49,12 @@ spring:
             - Path=/admin/**
           filters:
             - StripPrefix=1
+        - id: springcloud-job
+            uri: lb://springcloud-job
+            predicates:
+              - Path=/job/**
+            filters:
+              - StripPrefix=1
   main:
     allow-bean-definition-overriding: true
 # 注册中心配置
