@@ -52,7 +52,9 @@ spring:
         - id: springcloud-job
             uri: lb://springcloud-job
             predicates:
-              - Path=/schedule/**
+              - Path=/job/**
+            filters:
+              - StripPrefix=1
   main:
     allow-bean-definition-overriding: true
 # 注册中心配置
