@@ -180,7 +180,8 @@ public class SysScheduleController {
      */
     @GetMapping("/page")
     public R getPage(IPage<SysSchedule> page,SysSchedule sysSchedule){
-        return R.suc(this.sysScheduleService.page(page,new QueryWrapper<SysSchedule>(sysSchedule)));
+        this.sysScheduleService.page(page, new QueryWrapper<>(sysSchedule));
+        return R.suc(page);
     }
 }
 

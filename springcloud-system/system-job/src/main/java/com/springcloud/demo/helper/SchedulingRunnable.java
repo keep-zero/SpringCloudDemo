@@ -12,6 +12,7 @@ import org.springframework.util.ReflectionUtils;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.Objects;
 
 /**
@@ -41,7 +42,7 @@ public class SchedulingRunnable implements Runnable {
         long startTime = System.currentTimeMillis();
 
         if(log.isDebugEnabled()){
-            log.debug("执行对应的bean方法：{}.{}(),当前时间：{}",scheBeanName,scheMethod,startTime);
+            log.debug("执行对应的bean方法：{}.{}(),当前时间：{}",scheBeanName,scheMethod,new Date());
         }
 
         //利用反射生成对应的bean实例并执行指定方法,指定bean可能涉及数据库或者Spring体系的内容，所以统一从spring容器中获取

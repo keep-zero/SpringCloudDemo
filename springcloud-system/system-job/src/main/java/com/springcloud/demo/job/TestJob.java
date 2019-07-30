@@ -34,17 +34,9 @@ public class TestJob {
      *
      */
     @Scheduled(cron = "0/40 * * * * ?")
-    public void logJob() throws InterruptedException {
+    public void logJob(){
         if(log.isDebugEnabled()){
-            log.debug("哈哈哈哈哈哈,现在是1：{}",LocalDateTime.now());
-        }
-        Thread.sleep(1000);//休眠，证明Timer确实是单线程进行
-    }
-
-    @Scheduled(cron = "0/40 * * * * ?")
-    public void logJob2(){
-        if(log.isDebugEnabled()){
-            log.debug("哈哈哈哈哈哈,现在是2：{}",LocalDateTime.now());
+            log.debug("哈哈哈哈哈哈,现在是：{}",LocalDateTime.now());
         }
     }
 }

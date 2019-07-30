@@ -24,10 +24,6 @@ public class CronTaskRegistrar implements DisposableBean {
     @Autowired
     private TaskScheduler taskScheduler;
 
-    public TaskScheduler getScheduler() {
-        return this.taskScheduler;
-    }
-
     public void addCronTask(Runnable task, String cronExpression) {
         addCronTask(new CronTask(task, cronExpression));
     }
