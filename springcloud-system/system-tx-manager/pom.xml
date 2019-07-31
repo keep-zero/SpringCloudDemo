@@ -25,6 +25,18 @@
             <artifactId>druid-spring-boot-starter</artifactId>
         </dependency>
 
+        <!--mysql 驱动-->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+
+        <!--oracle 驱动-->
+        <dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>ojdbc6</artifactId>
+        </dependency>
+
         <!--缓存依赖-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -53,6 +65,10 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>ojdbc6</artifactId>
         </dependency>
     </dependencies>
 
