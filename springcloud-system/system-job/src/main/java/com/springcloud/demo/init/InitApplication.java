@@ -35,11 +35,10 @@ public class InitApplication implements ApplicationRunner {
 
         for(SysSchedule sysSchedule: list){
             if(sysSchedule.getScheStatus() == CommonConst.VALID){
+                log.debug("注册定时任务：{}", sysSchedule);
                 SchedulingRunnable schedulingRunnable = new SchedulingRunnable(sysSchedule.getScheBeanName(), sysSchedule.getScheMethod());
                 cronTaskRegistrar.addCronTask(schedulingRunnable, sysSchedule.getScheCron());
             }
         }
-
-        log.debug("项目启动完成");
     }
 }

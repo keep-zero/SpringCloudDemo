@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.concurrent.ScheduledFuture;
 
 /**
- * @description 定时任务统一配置，系统启动时自动从数据库/redis获取到有效定时任务列表后启动
+ * @description 系统线程配置
  * @auther: lai.guanfu
  * @date: 2019-06-24 15:59
  */
@@ -38,10 +38,7 @@ public class ScheduleConfig {
         //线程池前缀
         threadPoolTaskScheduler.setThreadNamePrefix("TestThread-");
 
-        //
-
         return threadPoolTaskScheduler;
     }
-
 
 }
