@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.springcloud.demo.mapper.SysDataDictionaryMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.springcloud.demo.entity.SysDataDictionary">
+        <result column="table_name" property="tableName" />
+        <result column="key" property="key" />
+        <result column="type" property="type" />
+        <result column="description" property="description" />
+        <result column="not_null" property="notNull" />
+        <result column="length" property="length" />
+    </resultMap>
+    
+    <select id="scanDataTable" resultType="com.springcloud.demo.entity.SysDataDictionary">
+        SELECT
+            TABLE_NAME,
+            COLUMN_NAME,
+            DATA_TYPE,
+            CHARACTER_MAXIMUM_LENGTH length,
+            IS_NULLABLE,
+            COLUMN_DEFAULT,
+            COLUMN_COMMENT
+        FROM
+            INFORMATION_SCHEMA.COLUMNS
+        where
+            table_schema= #{database}
+    </select>
+
+    <select id="scanDataTableOf" resultType="com.springcloud.demo.entity.SysDataDictionary">
+        SELECT
+            TABLE_NAME,
+            COLUMN_NAME,
+            DATA_TYPE,
+            CHARACTER_MAXIMUM_LENGTH length,
+            IS_NULLABLE,
+            COLUMN_DEFAULT,
+            COLUMN_COMMENT
+        FROM
+            INFORMATION_SCHEMA.COLUMNS
+        where
+            table_schema= #{database}
+        and
+              table_name=#{table}
+    </select>
+
+</mapper>

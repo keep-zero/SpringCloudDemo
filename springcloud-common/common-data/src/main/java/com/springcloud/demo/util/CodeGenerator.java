@@ -48,15 +48,15 @@ public class CodeGenerator {
 
             /** ======================================全局策略配置start=============================== **/
 
-//            String moudleName = scanner("模块名");
-//            String tableName = scanner("表名，多个英文逗号分割");
-//            String parentModleName = scanner("父模块名");
+            String moudleName = scanner("模块名");
+            String tableName = scanner("表名，多个英文逗号分割");
+            String parentModleName = scanner("父模块名");
             String isExtends = scanner("是否继承BaseEntity(Y/N)");
-            String moudleName = "springcloud-client2";
-            String tableName = "client_total";
+//            String moudleName = "springcloud-client2";
+//            String tableName = "client_total";
 
             //整体路径，默认所有自动生成代码归属于业务模块moudle总目录下的目标模块
-            String projectPath = System.getProperty("user.dir")+StringPool.SLASH+"springcloud-moudle"+StringPool.SLASH+moudleName;
+            String projectPath = System.getProperty("user.dir")+StringPool.SLASH+parentModleName+StringPool.SLASH+moudleName;
 
             //核验项目目录，如果项目不存在，不予创建生成代码
             File file = new File(projectPath);

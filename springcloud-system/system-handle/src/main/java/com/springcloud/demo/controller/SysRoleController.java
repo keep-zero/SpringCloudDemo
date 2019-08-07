@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @AllArgsConstructor
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/role")
 public class SysRoleController {
     private SysRoleService sysRoleService;
 }
