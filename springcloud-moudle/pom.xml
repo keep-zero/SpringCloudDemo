@@ -16,6 +16,7 @@
     <modules>
         <module>springcloud-client</module>
         <module>springcloud-client2</module>
+        <module>springcloud-test</module>
     </modules>
 
     <dependencies>
