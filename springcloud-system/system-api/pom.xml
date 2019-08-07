@@ -17,6 +17,11 @@
             <groupId>com.springcloud</groupId>
             <artifactId>common-data</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.springcloud</groupId>
+            <artifactId>common-swagger</artifactId>
+        </dependency>
     </dependencies>
 
 </project>
