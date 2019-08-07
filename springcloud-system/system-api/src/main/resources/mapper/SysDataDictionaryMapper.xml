@@ -27,4 +27,21 @@
             table_schema= #{database}
     </select>
 
+    <select id="scanDataTableOf" resultType="com.springcloud.demo.entity.SysDataDictionary">
+        SELECT
+            TABLE_NAME,
+            COLUMN_NAME,
+            DATA_TYPE,
+            CHARACTER_MAXIMUM_LENGTH length,
+            IS_NULLABLE,
+            COLUMN_DEFAULT,
+            COLUMN_COMMENT
+        FROM
+            INFORMATION_SCHEMA.COLUMNS
+        where
+            table_schema= #{database}
+        and
+              table_name=#{table}
+    </select>
+
 </mapper>

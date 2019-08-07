@@ -23,4 +23,9 @@ public class SysDataDictionaryServiceImpl extends ServiceImpl<SysDataDictionaryM
     public List<SysDataDictionary> scanDataTable(String database) {
         return this.baseMapper.scanDataTable(database);
     }
+
+    @Override
+    public List<SysDataDictionary> scanDataTable(String database, String table) {
+        return this.baseMapper.scanDataTableOf(database, table);
+    }
 }

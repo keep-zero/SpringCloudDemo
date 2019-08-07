@@ -18,8 +18,13 @@ import java.util.List;
 public interface SysDataDictionaryMapper extends BaseMapper<SysDataDictionary> {
 
     /**
-     * 扫描所有数据库表并将数据库表结构存入数据字典
+     * 扫描所有数据库表结构
      */
     List<SysDataDictionary> scanDataTable(String database);
+
+    /**
+     * 扫描指定数据库表结构
+     */
+    List<SysDataDictionary> scanDataTableOf(String database,String table);
 
 }

@@ -29,6 +29,11 @@ public class SysDataDictionaryController {
         return R.suc(this.sysDataDictionaryService.scanDataTable(DatabaseCons.DEFAULT_DATABASE));
     }
 
+    @GetMapping("scanTable")
+    public R scanDataTable(String table){
+        return R.suc(this.sysDataDictionaryService.scanDataTable(DatabaseCons.DEFAULT_DATABASE,table));
+    }
+
 
 }
 
