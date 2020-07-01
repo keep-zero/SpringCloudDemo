@@ -35,7 +35,7 @@
         <spring-platform.version>Cairo-SR7</spring-platform.version>
 
         <druid.version>1.1.10</druid.version>
-        <mysql.version>5.1.45</mysql.version>
+        <mysql.version>8.0.16</mysql.version>
         <oracle.version>11.2.0.4</oracle.version>
         <hutool.version>4.5.10</hutool.version>
         <mybatis-plus.version>3.1.0</mybatis-plus.version>
