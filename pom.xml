@@ -39,7 +39,7 @@
         <oracle.version>11.2.0.4</oracle.version>
         <hutool.version>4.5.10</hutool.version>
         <mybatis-plus.version>3.1.0</mybatis-plus.version>
-        <security.oauth.version>2.3.4.RELEASE</security.oauth.version>
+        <security.oauth.version>2.3.5.RELEASE</security.oauth.version>
         <security.oauth.auto.version>2.1.2.RELEASE</security.oauth.auto.version>
         <spring-boot-admin.version>2.1.4</spring-boot-admin.version>
         <txlcn.version>5.0.2.RELEASE</txlcn.version>
